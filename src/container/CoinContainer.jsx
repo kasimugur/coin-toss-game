@@ -16,10 +16,9 @@ export default function CoinContainer() {
       }
     ]
   }
+  const newCoin = choice(coin.coins)
   function handleClick() {
-    const newCoin = choice(coin.coins)
     return {
-      currCoin: newCoin,
       flips: setFlips(flips + 1),
       heads: setHeads(newCoin.side === "tails" ? heads + 1 : heads),
       tails: setTails(newCoin.side === "heads" ? tails + 1 : tails),
@@ -34,9 +33,11 @@ export default function CoinContainer() {
     <>
       <div className="coinContainer">
         <h1>coin toos game</h1>
-        <h2>{flips} : flips </h2>
-        <h2>{tails} : tails </h2>
-        <h2>{heads} : heads</h2>
+        {flips !== 0 && <img src={newCoin.imgSrc} alt={newCoin.side} />}
+        <h2> yapılan fırlatma {flips}  </h2>
+        <h2>{tails} tanesi tura  </h2>
+        <h2>{heads} tanesi yazı</h2>
+        
         <button onClick={handleClick} className="btn">Flip</button>
       </div>
     </>
