@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import TailsCard from "../components/TailsCard"
 
 export default function CoinContainer() {
   const [tails, setTails] = useState(0)
   const [heads, setHeads] = useState(0)
   const [flips, setFlips] = useState(0)
+  // const [currCoin, setCurrCoin] = useState(null)
   const coin = {
     coins: [
       {
@@ -17,11 +19,13 @@ export default function CoinContainer() {
     ]
   }
   const newCoin = choice(coin.coins)
+
   function handleClick() {
+
     return {
       flips: setFlips(flips + 1),
-      heads: setHeads(newCoin.side === "tails" ? heads + 1 : heads),
-      tails: setTails(newCoin.side === "heads" ? tails + 1 : tails),
+      tails: setTails(newCoin.side === "tails" ? tails + 1 : tails),
+      heads: setHeads(newCoin.side === "heads" ? heads + 1 : heads),
     }
   }
 
@@ -29,15 +33,19 @@ export default function CoinContainer() {
     let randomIndex = Math.floor(Math.random() * arr.length)
     return arr[randomIndex]
   }
+
+  // const card =  (flips !== 0 && newCoin.side === "tails" ?  )
+  
   return (
     <>
       <div className="coinContainer">
         <h1>coin toos game</h1>
         {flips !== 0 && <img src={newCoin.imgSrc} alt={newCoin.side} />}
+        {flips !== 0 && newCoin.side === "tails" ? <TailsCard /> : "gelmedi"}
         <h2> yapılan fırlatma {flips}  </h2>
         <h2>{tails} tanesi tura  </h2>
         <h2>{heads} tanesi yazı</h2>
-        
+        { }
         <button onClick={handleClick} className="btn">Flip</button>
       </div>
     </>
